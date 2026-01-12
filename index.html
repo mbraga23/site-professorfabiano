@@ -1126,7 +1126,13 @@
 
         // Lightbox
         function abrirLightbox(elemento) {
-            const imgSrc = elemento.querySelector('img').src;
+            let imgSrc;
+            // Se o elemento clicado for uma img direta ou se tiver uma img dentro
+            if (elemento.tagName === 'IMG') {
+                imgSrc = elemento.src;
+            } else {
+                imgSrc = elemento.querySelector('img').src;
+            }
             const lightbox = document.querySelector('.lightbox');
             lightbox.querySelector('img').src = imgSrc;
             lightbox.classList.add('ativa');
