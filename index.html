@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Fabiano Moreira | Vereador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-escuro: #003366;
+            --azul-medio: #0066cc;
+            --azul-claro: #66b3ff;
+            --texto-escuro: #1a1a1a;
+            --texto-claro: #666;
+            --branco: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--texto-escuro);
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: var(--azul-escuro);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--branco);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--branco);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--azul-claro);
+        }
+
+        /* HERO SECTION - BANNER PEQUENO/COMPACTO */
+        .hero {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            padding: 6rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        h2 {
+            color: var(--azul-escuro);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-content {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .bio-layout {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .bio-text p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .bio-foto img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* GALERIA DE FOTOS */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .galeria-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .galeria-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 50px rgba(255,255,255,0.1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: var(--azul-claro);
+        }
+
+        /* BOTÃO VER TODAS */
+        .btn-ver-todas {
+            display: inline-block;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: var(--azul-medio);
+            color: var(--branco);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            text-align: center;
+        }
+
+        .btn-ver-todas:hover {
+            background: var(--azul-escuro);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* FORMULÁRIO DE CONTATO */
+        form {
+            max-width: 600px;
+            margin: 2rem auto;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        label {
+            font-weight: 600;
+            color: var(--azul-escuro);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--azul-medio);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            background: var(--azul-medio);
+            color: var(--branco);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background: var(--azul-escuro);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--azul-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 5rem 1rem 1rem;
+            }
+
+            .bio-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .galeria {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .galeria-item img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">Fabiano Moreira</div>
+            <ul class="nav-links">
+                <li><a href="#biografia">Biografia</a></li>
+                <li><a href="#atuacao">Atuação Parlamentar</a></li>
+                <li><a href="#academica">Vida Acadêmica</a></li>
+                <li><a href="#leis">Leis</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO - BANNER PEQUENO -->
+    <section class="hero">
+        <div class="hero-banner">
+            <img src="imagens/banner-hero.png" alt="Professor Fabiano Moreira">
+        </div>
+    </section>
+
+    <!-- BIOGRAFIA -->
+    <section id="biografia">
+        <h2>Biografia</h2>
+        <div class="section-content bio-layout">
+            <div class="bio-text">
+                <p>
+                    Natural de Lagoa Santa, Minas Gerais, o Professor Fabiano Moreira é graduado em 
+                    Educação Física e Mestre em Promoção de Saúde e Prevenção da Violência pela 
+                    Universidade Federal de Minas Gerais (UFMG).
+                </p>
+                <p>
+                    Com mais de duas décadas de experiência na docência do ensino superior, 
+                    especialmente no curso de Medicina, Professor Fabiano sempre atuou como 
+                    facilitador do conhecimento e defensor da educação de qualidade.
+                </p>
+                <p>
+                    Sua trajetória na gestão pública é marcada por importantes contribuições: 
+                    foi Secretário de Saúde em três municípios da região metropolitana de 
+                    Belo Horizonte, onde implementou políticas públicas de saúde reconhecidas 
+                    nacionalmente.
+                </p>
+            </div>
+            <div class="bio-foto">
+                <img src="imagens/foto-principal.png" alt="Professor Fabiano Moreira">
+            </div>
+        </div>
+
+        <h3 style="margin-top: 3rem; text-align: center; color: var(--azul-escuro);">Momentos em Família</h3>
+        <div class="galeria">
+            <div class="galeria-item" onclick="openLightbox('imagens/familia-1.jpg')">
+                <img src="imagens/familia-1.jpg" alt="Família 1">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/familia-2.jpg')">
+                <img src="imagens/familia-2.jpg" alt="Família 2">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/familia-3.jpg')">
+                <img src="imagens/familia-3.jpg" alt="Família 3">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/familia-4.jpg')">
+                <img src="imagens/familia-4.jpg" alt="Família 4">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/familia-5.jpg')">
+                <img src="imagens/familia-5.jpg" alt="Família 5">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/familia-6.jpg')">
+                <img src="imagens/familia-6.jpg" alt="Família 6">
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="#" class="btn-ver-todas">Ver todas as fotos</a>
+        </div>
+    </section>
+
+    <!-- ATUAÇÃO PARLAMENTAR -->
+    <section id="atuacao">
+        <h2>Atuação Parlamentar</h2>
+        <div class="section-content">
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                Como vereador, Professor Fabiano Moreira tem se destacado pela defesa da educação, 
+                saúde e desenvolvimento social. Suas propostas e projetos de lei refletem o 
+                compromisso com uma gestão transparente e voltada para as necessidades da população.
+            </p>
+        </div>
+
+        <h3 style="margin-top: 3rem; text-align: center; color: var(--azul-escuro);">Em Ação</h3>
+        <div class="galeria">
+            <div class="galeria-item" onclick="openLightbox('imagens/atuacao-1.jpg')">
+                <img src="imagens/atuacao-1.jpg" alt="Atuação 1">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/atuacao-2.jpg')">
+                <img src="imagens/atuacao-2.jpg" alt="Atuação 2">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/atuacao-3.jpg')">
+                <img src="imagens/atuacao-3.jpg" alt="Atuação 3">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/atuacao-4.jpg')">
+                <img src="imagens/atuacao-4.jpg" alt="Atuação 4">
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="#" class="btn-ver-todas">Ver todas as fotos</a>
+        </div>
+    </section>
+
+    <!-- VIDA ACADÊMICA -->
+    <section id="academica">
+        <h2>Vida Acadêmica</h2>
+        <div class="section-content">
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                Professor Fabiano é Mestre em Promoção de Saúde e Prevenção da Violência pela UFMG, 
+                com mais de 23 anos de docência no ensino superior. Seu trabalho acadêmico é 
+                reconhecido nacionalmente, tendo recebido prêmio do Ministério da Saúde por 
+                contribuições na área de saúde pública.
+            </p>
+        </div>
+
+        <h3 style="margin-top: 3rem; text-align: center; color: var(--azul-escuro);">Trajetória Acadêmica</h3>
+        <div class="galeria">
+            <div class="galeria-item" onclick="openLightbox('imagens/univaco-1.jpg')">
+                <img src="imagens/univaco-1.jpg" alt="UNIVAÇO 1">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/univaco-2.jpg')">
+                <img src="imagens/univaco-2.jpg" alt="UNIVAÇO 2">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/univaco-3.jpg')">
+                <img src="imagens/univaco-3.jpg" alt="UNIVAÇO 3">
+            </div>
+            <div class="galeria-item" onclick="openLightbox('imagens/univaco-4.jpg')">
+                <img src="imagens/univaco-4.jpg" alt="UNIVAÇO 4">
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="#" class="btn-ver-todas">Ver todas as fotos</a>
+        </div>
+    </section>
+
+    <!-- LEIS -->
+    <section id="leis">
+        <h2>Projetos de Lei</h2>
+        <div class="section-content">
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                Confira os projetos de lei propostos e aprovados durante o mandato. 
+                Cada projeto reflete o compromisso com melhorias concretas para nossa cidade.
+            </p>
+            <div style="text-align: center;">
+                <p style="color: var(--azul-medio); font-size: 1.1rem; margin-bottom: 1rem;">
+                    📄 Em breve, todos os documentos estarão disponíveis para consulta
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+        <h2>Entre em Contato</h2>
+        <form action="https://formspree.io/f/SEU_FORM_ID" method="POST">
+            <div>
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div>
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone">
+            </div>
+            <div>
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" required></textarea>
+            </div>
+            <button type="submit">Enviar Mensagem</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Professor Fabiano Moreira. Todos os direitos reservados.</p>
+        <p>Desenvolvido com compromisso e transparência.</p>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-img" src="" alt="Imagem ampliada">
+        </div>
+    </div>
+
+    <script>
+        function openLightbox(imageSrc) {
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightbox-img').src = imageSrc;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fechar com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
