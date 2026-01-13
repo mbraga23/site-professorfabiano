@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Fabiano Moreira - Vereador de Lagoa Santa/MG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-escuro: #1a365d;
+            --azul-medio: #2c5282;
+            --dourado: #d69e2e;
+            --dourado-claro: #ecc94b;
+            --cinza-claro: #f7fafc;
+            --cinza-texto: #4a5568;
+            --branco: #ffffff;
+            --verde-whatsapp: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            color: var(--cinza-texto);
+            line-height: 1.7;
+            background: var(--cinza-claro);
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--branco);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "⚜";
+            color: var(--dourado);
+        }
+
+        /* NAVEGAÇÃO */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: rgba(255,255,255,0.15);
+            color: var(--dourado-claro);
+        }
+
+        nav a.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: var(--dourado);
+            border-radius: 2px;
+        }
+
+        /* MENU MOBILE */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--branco);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            padding: 80px 0 0 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+
+
+        /* CONTEÚDO PRINCIPAL */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .secao {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .secao.ativa {
+            display: block;
+        }
+
+        .secao-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--azul-escuro);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .secao-titulo::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dourado) 0%, var(--dourado-claro) 100%);
+            border-radius: 2px;
+        }
+
+        /* CARD DE CONTEÚDO */
+        .card-conteudo {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .card-conteudo.invertido {
+            grid-template-columns: 1fr 280px;
+        }
+
+        .card-conteudo.invertido .card-imagem {
+            order: 2;
+        }
+
+        .card-imagem {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            position: relative;
+        }
+
+        .card-imagem::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: 10px;
+            bottom: 10px;
+            border: 3px solid var(--dourado);
+            border-radius: 8px;
+            z-index: -1;
+        }
+
+        .card-imagem img {
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .card-texto h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--azul-escuro);
+            margin-bottom: 1rem;
+        }
+
+        .card-texto p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .card-texto ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-texto li {
+            margin-bottom: 0.5rem;
+        }
+
+        .destaque-premio {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--dourado);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .destaque-premio strong {
+            color: var(--azul-escuro);
+        }
+
+        /* GALERIA DE FOTOS */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* GRID DE LEIS POR ANO */
+        .leis-intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--branco);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .leis-intro p {
+            font-size: 1.1rem;
+            color: var(--cinza-texto);
+        }
+
+        .leis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .lei-ano {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .lei-ano:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border-color: var(--dourado);
+        }
+
+        .lei-ano .ano {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--azul-escuro);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .lei-ano .ver-leis {
+            font-size: 0.85rem;
+            color: var(--azul-medio);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .lei-ano:hover .ver-leis {
+            color: var(--dourado);
+        }
+
+        .foto-categoria .categoria-icone {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .foto-categoria .ano {
+            font-size: 1.3rem;
+        }
+
+        .fotos-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        /* MINI GALERIA NAS ABAS */
+        .secao-galeria {
+            margin-top: 2rem;
+        }
+
+        .secao-galeria h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--azul-escuro);
+            margin-bottom: 1rem;
+        }
+
+        .mini-galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mini-galeria img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mini-galeria img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .btn-ver-mais {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-ver-mais:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
+        }
+
+        .galeria-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .galeria-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .galeria-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .galeria-item .legenda {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: var(--branco);
+            padding: 2rem 1rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .lightbox.ativa {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-fechar {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: var(--branco);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .lightbox-fechar:hover {
+            transform: rotate(90deg);
+        }
+
+        /* FORMULÁRIO DE CONTATO */
+        .form-contato {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .intro-contato {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .intro-contato p {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .form-grupo {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-grupo label {
+            display: block;
+            font-weight: 600;
+            color: var(--azul-escuro);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-grupo input,
+        .form-grupo textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-grupo input:focus,
+        .form-grupo textarea:focus {
+            outline: none;
+            border-color: var(--azul-medio);
+            box-shadow: 0 0 0 4px rgba(44, 82, 130, 0.1);
+        }
+
+        .form-grupo textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-enviar {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            color: var(--branco);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-enviar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
+        }
+
+        /* BOTÕES DE CONTATO RÁPIDO */
+        .contato-rapido {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--verde-whatsapp);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .redes-sociais {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-rede {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-rede.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        .btn-rede.facebook {
+            background: #1877f2;
+            color: white;
+        }
+
+        .btn-rede:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .info-contato {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-item .icone {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--dourado) 0%, var(--dourado-claro) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-item a {
+            color: var(--azul-medio);
+            text-decoration: none;
+        }
+
+        .info-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--azul-escuro);
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-endereco {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-contatos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-contatos a {
+            color: var(--dourado);
+            text-decoration: none;
+        }
+
+        .footer-contatos a:hover {
+            text-decoration: underline;
+        }
+
+        footer .copyright {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 900px) {
+            .card-conteudo,
+            .card-conteudo.invertido {
+                grid-template-columns: 1fr;
+            }
+
+            .card-conteudo.invertido .card-imagem {
+                order: 0;
+            }
+
+            .card-imagem {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--azul-escuro);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+            }
+
+            nav ul.ativa {
+                display: flex;
+            }
+
+            nav a {
+                display: block;
+                padding: 1rem;
+                border-radius: 0;
+            }
+
+            .secao-titulo {
+                font-size: 2rem;
+            }
+
+            .card-conteudo {
+                padding: 1.5rem;
+            }
+
+            .footer-contatos {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding: 5rem 1rem 1rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .galeria {
+                grid-template-columns: 1fr;
+            }
+
+            .contato-rapido {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">Prof. Fabiano Moreira</a>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#biografia" class="nav-link active" data-secao="biografia">Biografia</a></li>
+                    <li><a href="#atuacao" class="nav-link" data-secao="atuacao">Atuação Parlamentar</a></li>
+                    <li><a href="#academica" class="nav-link" data-secao="academica">Vida Acadêmica</a></li>
+                    <li><a href="#leis" class="nav-link" data-secao="leis">Leis</a></li>
+                    <li><a href="#contato" class="nav-link" data-secao="contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-banner">
+            <img src="imagens/banner-hero.png" alt="Professor Fabiano Moreira - Ouvir, Agir e Transformar!">
+        </div>
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main>
+        <!-- BIOGRAFIA -->
+        <section id="biografia" class="secao ativa">
+            <h2 class="secao-titulo">Biografia</h2>
+            <div class="card-conteudo">
+                <div class="card-imagem">
+                    <img src="imagens/foto-biografia.jpg" alt="Professor Fabiano Moreira">
+                </div>
+                <div class="card-texto">
+                    <h3>Uma vida dedicada à saúde e à educação</h3>
+                    <p>
+                        Natural de Inhapim, Minas Gerais, Fabiano Moreira da Silva, nascido em 13 de dezembro de 1976, 
+                        é casado e pai de quatro filhos. Fisioterapeuta de formação, é mestre em Saúde da Família, 
+                        especialista em gestão clínica da atenção primária à saúde e docente, há mais de 23 anos, 
+                        das áreas de saúde pública do curso de Medicina da União Educacional do Vale do Aço (UNIVAÇO).
+                    </p>
+                    <p>
+                        Coordenador de Educação Permanente em Saúde na mesma Universidade, é ainda autor do livro 
+                        <em>"A Estratégia Saúde da Família na Ótica do Usuário"</em> e membro das bancas de concursos 
+                        e processo seletivo do Instituto Brasileiro de Gestão e Pesquisa (IBGP).
+                    </p>
+                    <p>
+                        Ex-tutor da ENSP/FIOCRUZ/Ministério da Saúde e ex-secretário municipal de saúde em três 
+                        diferentes cidades do Estado (Timóteo, Ipatinga e Lagoa Santa).
+                    </p>
+                    <div class="destaque-premio">
+                        <strong>🏆 Prêmio INOVASUS</strong> — Maior honraria prestada pelo Ministério da Saúde no 
+                        segmento de inovações na gestão da saúde, recebida em razão de um projeto implementado na 
+                        assistência farmacêutica de Lagoa Santa.
+                    </div>
+                    <p>
+                        Em Ipatinga, onde participou da equipe de implantação do PSF (hoje ESF) no município em 2002, 
+                        conta com relevantes projetos de sua autoria implementados no serviço público: Programa "SUS Fala", 
+                        Programa "Acolher", Programa "Sentinela", Programa "Mãe Coruja", Comissão Municipal de Farmácia 
+                        e Terapêutica, dentre vários outros.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="secao-galeria">
+                <h3>📸 Família e Lazer</h3>
+                <div class="mini-galeria">
+                    <img src="imagens/familia-1.jpg" alt="Família" onclick="abrirLightbox(this)">
+                    <img src="imagens/familia-2.jpg" alt="Família" onclick="abrirLightbox(this)">
+                    <img src="imagens/familia-3.jpg" alt="Família" onclick="abrirLightbox(this)">
+                    <img src="imagens/familia-4.jpg" alt="Família" onclick="abrirLightbox(this)">
+                    <img src="imagens/familia-5.jpg" alt="Família" onclick="abrirLightbox(this)">
+                    <img src="imagens/familia-6.jpg" alt="Família" onclick="abrirLightbox(this)">
+                </div>
+                <a href="https://drive.google.com/drive/folders/1K8wIAv9WVm-x0JUK1SCcX3ZgIn9E0GGC" target="_blank" class="btn-ver-mais">
+                    Ver todas as fotos →
+                </a>
+            </div>
+        </section>
+
+        <!-- ATUAÇÃO PARLAMENTAR -->
+        <section id="atuacao" class="secao">
+            <h2 class="secao-titulo">Atuação Parlamentar</h2>
+            <div class="card-conteudo invertido">
+                <div class="card-texto">
+                    <h3>Defensor incansável do SUS</h3>
+                    <p>
+                        Eleito para um terceiro mandato consecutivo como vereador em Lagoa Santa, Minas Gerais, 
+                        em 2024, Fabiano Moreira, defensor incansável do Sistema Único de Saúde (SUS), é autor 
+                        de importantes Projetos de Lei em vigor no município e de inúmeras ações sociais em prol 
+                        da população na cidade.
+                    </p>
+                    <p>
+                        Sua atuação parlamentar é marcada pela experiência adquirida como gestor público e 
+                        profissional de saúde, sempre buscando melhorias nos serviços públicos oferecidos 
+                        à população lagoassantense.
+                    </p>
+                </div>
+                <div class="card-imagem">
+                    <img src="imagens/foto-atuacao.jpg" alt="Atuação Parlamentar">
+                </div>
+            </div>
+            
+            <div class="secao-galeria">
+                <h3>📸 Fotos da Atuação</h3>
+                <div class="mini-galeria">
+                    <img src="imagens/atuacao-1.jpg" alt="Atuação Parlamentar" onclick="abrirLightbox(this)">
+                    <img src="imagens/atuacao-2.jpg" alt="Atuação Parlamentar" onclick="abrirLightbox(this)">
+                    <img src="imagens/atuacao-3.jpg" alt="Atuação Parlamentar" onclick="abrirLightbox(this)">
+                    <img src="imagens/atuacao-4.jpg" alt="Atuação Parlamentar" onclick="abrirLightbox(this)">
+                </div>
+                <a href="https://drive.google.com/drive/folders/1qcUEQKrjQGWmPZLRlGosR2KDf7QKCPwt" target="_blank" class="btn-ver-mais">
+                    Ver todas as fotos →
+                </a>
+            </div>
+        </section>
+
+        <!-- VIDA ACADÊMICA -->
+        <section id="academica" class="secao">
+            <h2 class="secao-titulo">Vida Acadêmica</h2>
+            <div class="card-conteudo">
+                <div class="card-imagem">
+                    <img src="imagens/foto-academica.jpg" alt="Vida Acadêmica">
+                </div>
+                <div class="card-texto">
+                    <h3>Mais de duas décadas formando profissionais de saúde</h3>
+                    <p>
+                        Docente, há mais de 23 anos, das áreas de saúde pública do curso de Medicina da 
+                        União Educacional do Vale do Aço (UNIVAÇO), Fabiano Moreira, que é ainda coordenador 
+                        de Educação Permanente em Saúde na mesma Universidade, desde a sua implantação, 
+                        é mestre em Saúde da Família e especialista em gestão clínica da atenção primária 
+                        à saúde e docência do ensino superior.
+                    </p>
+                    <h3>Formação</h3>
+                    <ul>
+                        <li>Mestrado em Saúde da Família</li>
+                        <li>Especialização em Gestão Clínica da Atenção Primária à Saúde</li>
+                        <li>Especialização em Docência do Ensino Superior</li>
+                        <li>Graduação em Fisioterapia</li>
+                    </ul>
+                    <h3>Publicação</h3>
+                    <p>
+                        Autor do livro <em>"A Estratégia Saúde da Família na Ótica do Usuário"</em>.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="secao-galeria">
+                <h3>📸 Na UNIVAÇO</h3>
+                <div class="mini-galeria">
+                    <img src="imagens/univaco-1.jpg" alt="UNIVAÇO" onclick="abrirLightbox(this)">
+                    <img src="imagens/univaco-2.jpg" alt="UNIVAÇO" onclick="abrirLightbox(this)">
+                    <img src="imagens/univaco-3.jpg" alt="UNIVAÇO" onclick="abrirLightbox(this)">
+                    <img src="imagens/univaco-4.jpg" alt="UNIVAÇO" onclick="abrirLightbox(this)">
+                </div>
+                <a href="https://drive.google.com/drive/folders/1lUcIcZmAfQxYLO8OgGyvUb4NzQESOzE9" target="_blank" class="btn-ver-mais">
+                    Ver todas as fotos →
+                </a>
+            </div>
+        </section>
+
+        <!-- LEIS -->
+        <section id="leis" class="secao">
+            <h2 class="secao-titulo">Leis</h2>
+            <div class="leis-intro">
+                <p>Confira as leis de autoria do Vereador Professor Fabiano Moreira, organizadas por ano. Clique no ano desejado para visualizar os documentos.</p>
+            </div>
+            <div class="leis-grid">
+                <a href="https://drive.google.com/drive/folders/1HArAHSo4lZGPd0rs0hyOtHuUgZ-9VZg1" target="_blank" class="lei-ano">
+                    <span class="ano">2025</span>
+                    <span class="ver-leis">Ver leis →</span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1gM6QmrIvI4UxsFif1GzW4mbSX20yX1m1" target="_blank" class="lei-ano">
+                    <span class="ano">2024</span>
+                    <span class="ver-leis">Ver leis →</span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1zXMVl2TmyrhM7B_WmM5k2D0ayLDwq0CZ" target="_blank" class="lei-ano">
+                    <span class="ano">2023</span>
+                    <span class="ver-leis">Ver leis →</span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/13JVEm_lAAffS1UgbrM3zVgkNmGPOkRhw" target="_blank" class="lei-ano">
+                    <span class="ano">2022</span>
+                    <span class="ver-leis">Ver leis →</span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1mS50rhcbNJHTZ7lIgjABocoav_hrmlLn" target="_blank" class="lei-ano">
+                    <span class="ano">2021</span>
+                    <span class="ver-leis">Ver leis →</span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1EoSuGXcoUMziDGfKTrV4LZmhIaW1sglD" target="_blank" class="lei-ano">
+                    <span class="ano">2020</span>
+                    <span class="ver-leis">Ver leis →</span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1B49HvQKbIfPf_imC04RipiF3OajecmMO" target="_blank" class="lei-ano">
+                    <span class="ano">2019</span>
+                    <span class="ver-leis">Ver leis →</span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1xCKOollzBNSHoOFi1wYWyduZ7nlex4fg" target="_blank" class="lei-ano">
+                    <span class="ano">2018</span>
+                    <span class="ver-leis">Ver leis →</span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1ez03G8TwVbmgLXz6QrAHYrA8kCl16kPT" target="_blank" class="lei-ano">
+                    <span class="ano">2017</span>
+                    <span class="ver-leis">Ver leis →</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contato" class="secao">
+            <h2 class="secao-titulo">Entre em Contato</h2>
+            <div class="form-contato">
+                <div class="intro-contato">
+                    <p>
+                        Dúvidas e/ou sugestões? Entre em contato comigo através do meu WhatsApp, e-mail ou das minhas 
+                        redes sociais! Através delas você acompanha, diariamente, informações sobre minha atuação como 
+                        professor universitário, temas e serviços de utilidade pública, todas as minhas ações e projetos 
+                        no Legislativo, e, claro, assuntos nas mais diversas áreas, como saúde, educação e segurança!
+                    </p>
+                </div>
+
+                <!-- BOTÕES DE CONTATO RÁPIDO -->
+                <div class="contato-rapido">
+                    <a href="https://wa.me/5531975920005" target="_blank" class="btn-whatsapp">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        Fale pelo WhatsApp
+                    </a>
+                </div>
+
+                <div class="redes-sociais">
+                    <a href="https://instagram.com/professorfabianomoreira" target="_blank" class="btn-rede instagram" title="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://facebook.com/fabianomoreira" target="_blank" class="btn-rede facebook" title="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- FORMULÁRIO -->
+                <form action="https://formspree.io/f/mzddbkye" method="POST">
+                    <input type="hidden" name="_subject" value="Nova mensagem do site - Vereador Fabiano Moreira">
+                    <div class="form-grupo">
+                        <label for="nome">Seu Nome</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="email">Seu E-mail</label>
+                        <input type="email" id="email" name="email" required placeholder="exemplo@email.com">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="telefone">Telefone (opcional)</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="assunto">Assunto</label>
+                        <input type="text" id="assunto" name="assunto" required placeholder="Sobre o que deseja falar?">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" required placeholder="Escreva sua mensagem aqui..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+                </form>
+
+                <div class="info-contato">
+                    <div class="info-item">
+                        <div class="icone">📍</div>
+                        <div>
+                            <strong>Gabinete</strong><br>
+                            Câmara Municipal de Lagoa Santa
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icone">📱</div>
+                        <div>
+                            <strong>WhatsApp</strong><br>
+                            <a href="https://wa.me/5531975920005">(31) 97592-0005</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icone">📧</div>
+                        <div>
+                            <strong>E-mail</strong><br>
+                            <a href="mailto:vereadorfabianomoreira@cmlagoasanta.mg.gov.br">vereadorfabianomoreira@cmlagoasanta.mg.gov.br</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" onclick="fecharLightbox()">
+        <button class="lightbox-fechar">&times;</button>
+        <img src="" alt="Foto ampliada">
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-endereco">
+                📍 Rua Engenheiro Vicente de Freitas, 124, Lundcéia, Lagoa Santa, Minas Gerais
+            </p>
+            <div class="footer-contatos">
+                <span>📧 <a href="mailto:vereadorfabianomoreira@cmlagoasanta.mg.gov.br">vereadorfabianomoreira@cmlagoasanta.mg.gov.br</a></span>
+                <span>📱 <a href="https://wa.me/5531975920005">(31) 97592-0005</a></span>
+            </div>
+            <p class="copyright">© 2025 Professor Fabiano Moreira - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navegação por abas
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                document.querySelectorAll('.secao').forEach(s => s.classList.remove('ativa'));
+                const secaoId = this.getAttribute('data-secao');
+                document.getElementById(secaoId).classList.add('ativa');
+                
+                document.querySelector('main').scrollIntoView({ behavior: 'smooth' });
+                
+                document.querySelector('nav ul').classList.remove('ativa');
+            });
+        });
+
+        // Menu mobile toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('ativa');
+        });
+
+        // Lightbox
+        function abrirLightbox(elemento) {
+            let imgSrc;
+            // Se o elemento clicado for uma img direta ou se tiver uma img dentro
+            if (elemento.tagName === 'IMG') {
+                imgSrc = elemento.src;
+            } else {
+                imgSrc = elemento.querySelector('img').src;
+            }
+            const lightbox = document.querySelector('.lightbox');
+            lightbox.querySelector('img').src = imgSrc;
+            lightbox.classList.add('ativa');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharLightbox() {
+            document.querySelector('.lightbox').classList.remove('ativa');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                fecharLightbox();
+            }
+        });
+
+        // Máscara de telefone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            if (value.length > 6) {
+                value = `(${value.slice(0,2)}) ${value.slice(2,7)}-${value.slice(7)}`;
+            } else if (value.length > 2) {
+                value = `(${value.slice(0,2)}) ${value.slice(2)}`;
+            } else if (value.length > 0) {
+                value = `(${value}`;
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
