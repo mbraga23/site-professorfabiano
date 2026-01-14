@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://www.professorfabianomoreira.com.br/sitemap.xml
